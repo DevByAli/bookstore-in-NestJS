@@ -7,16 +7,27 @@ import { AddBookDto } from './dto/addBook.dto';
 import { UpdateBookDto } from './dto/updateBook.dto';
 import { GetAllBooksDto } from './dto/getAllBooks.dto';
 import { SearchBooksDto } from './dto/searchBook.dto';
+import { CloudinaryService } from 'src/shared/services/cloudinary.service';
+import { BOOK_COVER_FOLDER } from 'src/utils/constants';
 
 @Injectable()
 export class BookService {
-  constructor(@InjectModel(Book.name) private bookModel: Model<Book>) {}
+  constructor(
+    @InjectModel(Book.name) private bookModel: Model<Book>,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   async addBook(addBookDto: AddBookDto) {
     return await this.bookModel.create(addBookDto);
   }
 
   async updateBook(bookId: string, updateBookDto: UpdateBookDto) {
+    const book = await this.bookModel.findById(bookId);
+
+    if (updateBookDto.url && updateBookDto.cloudinaryId) {
+      this.cloudinaryService.deleteImageResource(BOOK_COVER_FOLDER, book.cloudinaryId);
+    }
+    
     return await this.bookModel.findByIdAndUpdate(bookId, updateBookDto, {
       new: true,
       runValidators: true,
@@ -28,7 +39,7 @@ export class BookService {
     if (!book) {
       throw new NotFoundException('Book not found');
     }
-    
+
     return book;
   }
 

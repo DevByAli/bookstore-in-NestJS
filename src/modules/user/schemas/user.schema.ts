@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { sign } from 'jsonwebtoken';
 
-import { Role } from '../enum/role.enum';
+import { UserRole } from '../enum/userRole.enum';
 import { verifyHash } from 'src/utils/verifyHash';
 import { hash } from 'src/utils/hash';
 import { Date } from 'mongoose';
@@ -18,7 +18,7 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true, enum: Role, default: Role.User })
+  @Prop({ required: true, enum: UserRole, default: UserRole.User })
   role: string;
 
   @Prop({ default: false })

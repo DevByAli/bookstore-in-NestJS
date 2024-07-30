@@ -3,28 +3,28 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({ timestamps: true })
 export class Book {
   @Prop({ required: true, unique: true, trim: true })
-  title: String;
+  title: string;
 
   @Prop({ required: true, trim: true })
-  author: String;
+  author: string;
 
   @Prop({ required: true, min: 1 })
   price: Number;
 
   @Prop({ required: true, trim: true })
-  description: String;
+  description: string;
 
   @Prop({ required: true, type: [String] })
-  tags: [String];
+  tags: string[];
 
   @Prop({ default: 0 })
   purchased: Number;
 
   @Prop({ required: true, trim: true })
-  url: String;
+  url: string;
 
   @Prop({ required: true, trim: true })
-  cloudinaryId: String;
+  cloudinaryId: string;
 }
 
 const schema = SchemaFactory.createForClass(Book);

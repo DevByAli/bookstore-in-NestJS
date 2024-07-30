@@ -1,3 +1,4 @@
+import { SocketModule } from './gateways/websocket/socket.module';
 import { OrderModule } from './modules/order/order.module';
 import { StatsModule } from './modules/stats/stats.module';
 import { NotificationModule } from './modules/notification/notification.module';
@@ -18,6 +19,7 @@ import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
+    SocketModule,
     OrderModule,
     StatsModule,
     CartModule,
@@ -31,9 +33,9 @@ import { UserModule } from './modules/user/user.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
+    // consumer.apply(AuthMiddleware).forRoutes({
+    //   path: '*',
+    //   method: RequestMethod.ALL,
+    // });
   }
 }

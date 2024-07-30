@@ -20,7 +20,7 @@ async function bootstrap() {
   app.setViewEngine('ejs');
 
   const port = process.env.APP_SERVER_PORT || 3000;
-  await app.listen(port);
+  await app.listen(port, ()=>console.log("Server listening on PORT", port));
 }
 
 bootstrap();

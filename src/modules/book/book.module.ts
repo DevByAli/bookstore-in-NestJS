@@ -6,13 +6,14 @@ import { BookService } from './book.service';
 import { Book, BookSchema } from './schemas/book.schema';
 import { UploadMiddleware } from 'src/middlewares/upload.middleware';
 import { IdValidationMiddleware } from 'src/middlewares/IdValidation.middleware';
+import { CloudinaryService } from 'src/shared/services/cloudinary.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }]),
   ],
   controllers: [BookController],
-  providers: [BookService],
+  providers: [BookService, CloudinaryService],
   exports: [BookService],
 })
 export class BookModule implements NestModule {
