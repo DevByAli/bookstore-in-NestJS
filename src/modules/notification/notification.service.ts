@@ -42,4 +42,33 @@ export class NotificationService {
 
     return 'All notification mark as read.';
   }
+
+  async createNotification(
+    userId: string,
+    orderId: string,
+    notificationType: string = 'NO',
+  ) {
+    const newNotification = await this.notificationModel.findOneAndUpdate(
+      {
+        orderId,
+      },
+      { userId, orderId, type: notificationType },
+      { upsert: true, new: true },
+    );
+
+    const notificationId = newNotification._id.toString();
+
+    return await this.populateNotification(notificationId);
+  }
+
+  private async populateNotification(notificationId: string) {
+    return await this.notificationModel
+      .findById(notificationId)
+      .populate({
+        path: 'userId',
+        select: 'username avatar',
+      })
+      .projection({ userId: 'user', _id: 'id' })
+      .select('createdAt userId orderId type');
+  }
 }

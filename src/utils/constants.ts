@@ -10,3 +10,6 @@ export const AVATAR_FOLDER = 'Avatars';
 
 export const MIN_BUSINESS_DAYS = 5;
 export const MAX_BUSINESS_DAYS = 7;
+
+export const ROLE_ADMIN = 'admin';
+export const ROLE_USER = 'user';

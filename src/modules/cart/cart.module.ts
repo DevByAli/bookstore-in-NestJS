@@ -12,6 +12,7 @@ import { IdValidationMiddleware } from 'src/middlewares/IdValidation.middleware'
   ],
   controllers: [CartController],
   providers: [CartService],
+  exports: [CartService]
 })
 export class CartModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

@@ -7,8 +7,8 @@ import {
   IsString,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Order } from '../enums/order.enum';
-import { SortBy } from '../enums/sortBy.enum';
+import { SortingOrder } from '../enums/order.enum';
+import { SortBy } from '../../../shared/enums/sortBy.enum';
 
 export class SearchBooksDto {
   @IsString()
@@ -34,6 +34,6 @@ export class SearchBooksDto {
   sortBy?: SortBy;
 
   @IsOptional()
-  @IsEnum(Order)
-  order: Order = Order.Asc;
+  @IsEnum(SortingOrder)
+  order: SortingOrder = SortingOrder.Asc;
 }

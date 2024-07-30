@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
 import { IsOptional, IsPositive, IsString, IsEnum } from 'class-validator';
 
-import { Order } from '../enums/order.enum';
-import { SortBy } from '../enums/sortBy.enum';
+import { SortingOrder } from '../enums/order.enum';
+import { SortBy } from 'src/shared/enums/sortBy.enum';
 
 export class GetAllBooksDto {
   @IsOptional()
@@ -22,6 +22,6 @@ export class GetAllBooksDto {
 
   @IsString()
   @IsOptional()
-  @IsEnum(Order)
-  order?: Order = Order.Asc;
+  @IsEnum(SortingOrder)
+  sortOrder?: SortingOrder = SortingOrder.Asc;
 }

@@ -17,6 +17,7 @@ import { RoleMiddleware } from 'src/middlewares/role.middleware';
   ],
   controllers: [NotificationController],
   providers: [NotificationService],
+  exports: [NotificationService]
 })
 export class NotificationModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

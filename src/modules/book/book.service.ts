@@ -33,9 +33,9 @@ export class BookService {
   }
 
   async getBooks(getAllBooksDto: GetAllBooksDto) {
-    const { pageNumber, pageSize, sortBy, order } = getAllBooksDto;
+    const { pageNumber, pageSize, sortBy, sortOrder } = getAllBooksDto;
 
-    const sort = { [sortBy]: order };
+    const sort = { [sortBy]: sortOrder };
 
     const totalBookCount = await this.bookModel.countDocuments();
     const totalPages = Math.ceil(totalBookCount / pageSize);

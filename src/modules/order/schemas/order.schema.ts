@@ -15,7 +15,7 @@ export class Order {
     ref: User.name,
     required: true,
   })
-  user: mongoose.Schema.Types.ObjectId;
+  userId: mongoose.Schema.Types.ObjectId;
 
   @Prop({ type: [OrderItem], required: true })
   items: OrderItem[];
@@ -40,7 +40,7 @@ const schema = SchemaFactory.createForClass(Order);
 
 schema.post('save', async function (document) {
   for (const item of document.items) {
-    await mongoose.model(Book.name).findByIdAndUpdate(item.book, {
+    await mongoose.model(Book.name).findByIdAndUpdate(item.bookId, {
       $inc: { purchased: item.quantity },
     });
   }

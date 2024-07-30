@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 import { User } from 'src/modules/user/schemas/user.schema';
 import { NotificationType } from '../enums/notificationType.enum';
+import { Order } from 'src/modules/order/schemas/order.schema';
 
 @Schema({ timestamps: true })
 export class Notification {
@@ -13,7 +14,7 @@ export class Notification {
   })
   userId: string;
 
-  @Prop({ required: true, ref: 'Order' })
+  @Prop({ required: true, ref: Order.name })
   orderId: string;
 
   @Prop({ default: false })

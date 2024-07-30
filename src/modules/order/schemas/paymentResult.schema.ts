@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class PaymentResult {
   @Prop({ required: true })
-  paymentIntent: string;
+  paymentId: string;
 
   @Prop({ required: true })
   refundId: string;

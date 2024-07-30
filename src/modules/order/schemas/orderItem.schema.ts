@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 @Schema()
 export class OrderItem {
   @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
-  book: mongoose.Schema.Types.ObjectId;
+  bookId: mongoose.Schema.Types.ObjectId;
 
   @Prop({ min: 1, required: true })
   quantity: number;
